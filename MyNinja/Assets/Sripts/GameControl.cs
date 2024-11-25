@@ -17,7 +17,7 @@ public class GameControl : MonoBehaviour
     {
         animator.SetBool("IsGround",player.isGround);
         animator.SetBool("IsOnWall", player.isWall);
-        animator.SetFloat("HorizontalSpeed", player.Rigidbody2D.velocity.x);
-        animator.SetFloat("VerticalSpeed", Mathf.Abs(player.Rigidbody2D.velocity.y));
+        animator.SetFloat("VerticalSpeed", player.Rigidbody2D.velocity.y);
+        animator.SetFloat("HorizontalSpeed", Mathf.Abs(player.Rigidbody2D.velocity.x));
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float InputX = 0;
-    private Rigidbody2D Rigidbody2D;
+    public Rigidbody2D Rigidbody2D;
     public float maxForce = 100;
     public float maxVelocity = 10;
     public bool isGround = false;
+    public bool isWall = false;
 
     // Start is called before the first frame update
     void Start()

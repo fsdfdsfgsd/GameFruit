@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\CJT\\Documents\\GitHub\\GameFruit\\GameWang\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B51CD45C-3B58-A9E7-E109-E3C6E392DB60}|Assembly-CSharp.csproj|C:\\Users\\CJT\\Documents\\GitHub\\GameFruit\\GameWang\\assets\\sprites\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B51CD45C-3B58-A9E7-E109-E3C6E392DB60}|Assembly-CSharp.csproj|solutionrelative:assets\\sprites\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B51CD45C-3B58-A9E7-E109-E3C6E392DB60}|Assembly-CSharp.csproj|c:\\users\\cjt\\documents\\github\\gamefruit\\gamewang\\assets\\sprites\\gamecontonl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B51CD45C-3B58-A9E7-E109-E3C6E392DB60}|Assembly-CSharp.csproj|solutionrelative:assets\\sprites\\gamecontonl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameContonl.cs",
+              "DocumentMoniker": "C:\\Users\\CJT\\Documents\\GitHub\\GameFruit\\GameWang\\Assets\\Sprites\\GameContonl.cs",
+              "RelativeDocumentMoniker": "Assets\\Sprites\\GameContonl.cs",
+              "ToolTip": "C:\\Users\\CJT\\Documents\\GitHub\\GameFruit\\GameWang\\Assets\\Sprites\\GameContonl.cs",
+              "RelativeToolTip": "Assets\\Sprites\\GameContonl.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T07:56:08.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\CJT\\Documents\\GitHub\\GameFruit\\GameWang\\Assets\\Sprites\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Sprites\\Player.cs",
+              "ToolTip": "C:\\Users\\CJT\\Documents\\GitHub\\GameFruit\\GameWang\\Assets\\Sprites\\Player.cs",
+              "RelativeToolTip": "Assets\\Sprites\\Player.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAAwC4AAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T03:07:25.571Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
