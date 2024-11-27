@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaceView : MonoBehaviour
 {
-    private Transform currentPlayer;
+    public Transform currentPlayer;
     public float minDistance = 10;
 
     public bool IsSleep = true;
