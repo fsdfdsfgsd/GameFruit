@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public ParticleSystem palyerPs;
     public float moveSpeed = 5f;
     [Range(0f, 10f)]
     public float jumpSpeed;//跳跃速读
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
         moveJump = Input.GetButtonDown("Jump");//检查按下跳跃按键
         jumpHold = Input.GetButton("Jump");
 
+
         if (moveJump && jumpCount>0)
         {
             isJump = true;
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
 
     private void flip()//翻转
     {
+        PPS();
         facingRight = !facingRight;
         Vector3 playerMove = transform.localScale;
         playerMove.x *= -1;
@@ -75,7 +78,7 @@ public class Player : MonoBehaviour
     {
         if(isGrounded)
         {
-            jumpCount = 2;
+            jumpCount = 1;
         }
 
         if (isJump)
@@ -83,7 +86,7 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector2.up*jumpSpeed,ForceMode2D.Impulse);
             jumpCount--;
             isJump = false;
-
+            PPS();
         }
 
         if (rb.velocity.y < 0)
@@ -98,5 +101,10 @@ public class Player : MonoBehaviour
         {
             rb.gravityScale = 1;
         }
+    }
+    
+    void PPS()
+    {
+        palyerPs.Play();
     }
 }
