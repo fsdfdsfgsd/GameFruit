@@ -21,11 +21,14 @@ public class Player : MonoBehaviour
     private bool jumpHold;//长安跳跃
     private bool facingRight = true;//面朝左
     private bool isJump;//起传递作用的，表示跳跃状态
+    private Animator anim;
+    private enum playerState{ idle,run,jump,fall,doubleJump};//游戏状态
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
         isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
         Move(); 
         Jump();
+        playerAnim();
     }
     private void Move()//移动
     {
@@ -105,5 +109,31 @@ public class Player : MonoBehaviour
     private void PPS()
     {
         playerPs.Play();
+    }
+    void playerAnim()
+    {
+        playerState states;
+        if (Mathf.Abs(moveX) > 0)
+        {
+            states = playerState.run;
+        }
+        else
+        {
+             states = playerState.idle;
+        }
+        if(rb.velocity.y > 0.1f)
+        {
+            states = playerState.jump;
+        }
+        else if(rb.velocity.y < -0.1f)
+        {
+            states = playerState.fall;
+        }
+        if(jumpMove || jumpHold && rb.velocity.y > 0f)
+        {
+            states = playerState.doubleJump;
+        }
+
+        anim.SetInteger("state", (int)states);
     }
 }
