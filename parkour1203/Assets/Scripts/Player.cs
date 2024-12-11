@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
     public float speedMove = 5f;//移动速度
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     private bool facingRight = true;//面朝左
     private bool isJump;//起传递作用的，表示跳跃状态
     private Animator anim;
+    private Transform KillPoint;
     private enum playerState{ idle,run,jump,fall,doubleJump};//游戏状态
 
     // Start is called before the first frame update
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        KillPoint = transform.Find("killPoint");
+
     }
 
     // Update is called once per frame
@@ -46,12 +50,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate()//物理
     {
         isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
         Move(); 
         Jump();
         playerAnim();
+        Enemy();
     }
     private void Move()//移动
     {
@@ -78,7 +83,7 @@ public class Player : MonoBehaviour
 
     private void Jump()//跳跃
     {
-        if(isGround)
+        if (isGround)
         {
             jumpCount = 2;
         }
@@ -91,9 +96,11 @@ public class Player : MonoBehaviour
             //rb.velocity = Vector2.up * jumpSpeed;
             jumpCount--;
             isJump = false;
+            FindObjectOfType<AudioMusic>().playerPlay(0);
+
         }
 
-        if(rb.velocity.y < 0)
+        if (rb.velocity.y < 0)
         {
             rb.gravityScale = fallAddition;
         }
@@ -106,11 +113,11 @@ public class Player : MonoBehaviour
             rb.gravityScale = 1;
         }
     }
-    private void PPS()
+    private void PPS()//粒子
     {
         playerPs.Play();
     }
-    void playerAnim()
+    private void playerAnim()//动画
     {
         playerState states;
         if (Mathf.Abs(moveX) > 0)
@@ -135,5 +142,21 @@ public class Player : MonoBehaviour
         }
 
         anim.SetInteger("state", (int)states);
+    }
+    private void Enemy()
+    {
+         Collider2D enemy = Physics2D.OverlapBox(KillPoint.position, new Vector3(0.3f, 0.5f, 0f), 0f, LayerMask.GetMask("Enemy"));
+        if(enemy == null)
+        {
+            return;
+        }
+        else
+        {
+            Destroy(enemy.gameObject);
+        }
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+
+        rb.AddForce(new Vector2(0f, 350f));
+
     }
 }
