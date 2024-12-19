@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float fallAddition = 3.5f;//下落的重力加成
     public float jumpAddition = 1.5f;//跳跃的重力加成
     public ParticleSystem playerPs;
+    public GameObject blood;
 
     private Rigidbody2D rb;//
     [SerializeField] private int jumpCount = 0;//跳跃次数
@@ -24,6 +25,13 @@ public class Player : MonoBehaviour
     private bool isJump;//起传递作用的，表示跳跃状态
     private Animator anim;
     private Transform KillPoint;
+
+    private bool canDash = true;    //是否可以冲刺
+    private bool isDashing;         //正在冲刺中
+
+    private float dashingPower = 25f;   //冲刺的力量
+    private float dashingTime = 0.2f;   //冲刺的时间
+    private float noDashTime = 1f;      //冲刺的冷却时间
     private enum playerState{ idle,run,jump,fall,doubleJump};//游戏状态
 
     // Start is called before the first frame update
@@ -38,6 +46,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isDashing)
+        {
+            return;
+        }
         moveX = Input.GetAxis("Horizontal");
         jumpMove = Input.GetButtonDown("Jump");
         jumpHold = Input.GetButton("Jump");
@@ -48,10 +60,18 @@ public class Player : MonoBehaviour
             jumpCount--;
             PPS();
         }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     private void FixedUpdate()//物理
     {
+        if (isDashing)
+        {
+            return;
+        }
         isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
         Move(); 
         Jump();
@@ -152,11 +172,39 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Destroy(enemy.gameObject);
+            Instantiate(blood,transform.position,Quaternion.identity);
+            Destroy(enemy.gameObject,0.3f);
         }
         rb.velocity = new Vector2(rb.velocity.x, 0f);
 
         rb.AddForce(new Vector2(0f, 350f));
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "springBed")
+        {
+            jumpCount = 0;
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true; //正在冲刺中的时候
+
+        float dashingGravity = rb.gravityScale;//冲刺的时候 不受重力的影响 让它为0
+        rb.gravityScale = 0f;
+
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        yield return new WaitForSeconds(dashingTime);
+
+        rb.gravityScale = dashingGravity;
+        
+        isDashing = false;  //冲刺结束
+        yield return new WaitForSeconds(noDashTime);   //加入冷却时间
+        canDash = true;
+    }
+
 }
