@@ -1,61 +1,98 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>fool website</title>
-    <link rel="stylesheet"  href="./css/style.css">
-    <link rel="icon" type="image/png" href="./瀑布流.png">
-    <style>
-        
-    </style>
-</head>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/png" href="./瀑布流.png" />
+    <style></style>
+  </head>
 
-<body>
+  <body>
     <div class="mainContainer">
-        <!-- 顶部区域 -->
-        <header class="headerSection">
-            <nav class="mainNav">
-                <ul>
-                    <li role="menuitem"><a href="#">首页</a></li>
-                    <li role="menuitem"><a href="#">关于我们</a></li>
-                    <li role="menuitem"><a href="#">服务</a></li>
-                    <li role="menuitem"><a href="#">产品展示</a></li>
-                    <li role="menuitem"><a href="#">联系我们</a></li>
-                </ul>
-            </nav>
-        </header>
+      <!-- 顶部区域 -->
+      <header class="headerSection">
+        <nav class="mainNav">
+          <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">服务</a></li>
+            <li><a href="#">产品展示</a></li>
+            <li><a href="#">联系我们</a></li>
+          </ul>
+        </nav>
+      </header>
 
-        <!-- 主要内容区域 -->
-        <section class="contentContainer">
-            <!-- 左侧内容 -->
-            <aside class="leftSidebar">
-                <h3>左侧边栏</h3>
-                <p>这里是左侧边栏的内容。</p>
-            </aside>
-        
-            <!-- 中间内容 -->
-            <article class="contentSection">
-                <h2>欢迎来到我们的页面</h2>
-                <p>这里是关于我们公司或者网站的简要介绍。我们致力于提供高质量的产品和服务。我们的团队充满激情与创造力，并且努力让每一位用户都拥有卓越的体验。</p>
-                <img src="./images/feature.jpg" alt="特色图片" class="featureImg">
-            </article>
-        
-            <!-- 右侧内容 -->
-            <aside class="rightSidebar">
-                <h3>右侧边栏</h3>
-                <p>这里是右侧边栏的内容。</p>
-            </aside>
-        </section>
+      <!-- 主要内容区域 -->
+      <section class="contentContainer">
+        <form>
+          <fieldset>
+            <legend>Personalia:</legend>
+            <label for="fname">First name:</label><br />
+            <input type="text" id="fname" name="fname" value="John" /><br />
+            <label for="lname">Last name:</label><br />
+            <input
+              type="text"
+              id="lname"
+              name="lname"
+              value="Doe"
+            /><br /><br />
+            <input type="submit" value="Submit" />
+          </fieldset>
+          <button type="button" onclick="alert('Hello World!')">
+            Click Me!
+          </button>
+          <form>
+            <input list="browsers" name="browser" />
+            <datalist id="browsers">
+              <option value="Edge"></option>
+              <option value="Firefox"></option>
+              <option value="Chrome"></option>
+              <option value="Opera"></option>
+              <option value="Safari"></option>
+            </datalist>
 
-        <!-- 底部区域 -->
-        <footer class="footerSection">
-            <p>© 2024. 版权所有。</p>
-            <ul class="footerNav">
-                <li><a href="#">隐私政策</a></li>
-                <li><a href="#">使用条款</a></li>
-            </ul>
-        </footer>
+            <input type="submit" />
+          </form>
+          <br />
+          <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+            0
+            <input type="range" id="a" name="a" value="50" />
+            100 +
+            <input type="number" id="b" name="b" value="50" />
+            =
+            <output name="x" for="a b"></output>
+            <input type="submit" />
+          </form>
+        </form>
+
+        <!-- 中间内容 -->
+        <article class="contentSection">
+          <h2>伦敦</h2>
+          <p>伦敦是英格兰的首都。</p>
+          <p>它是英国人口最多的城市， 拥有超过 1300 万居民的大都市区。</p>
+        </article>
+        <article class="contentSection">
+          <h2>巴黎</h2>
+          <p>巴黎是法国的首都。</p>
+          <p>巴黎地区是欧洲最大的人口中心之一。 拥有超过 1200 万居民。</p>
+        </article>
+        <article class="contentSection">
+          <h2>东京</h2>
+          <p>东京是日本的首都。</p>
+          <p>它是大东京地区的中心， 以及世界上人口最多的大都市区。</p>
+        </article>
+      </section>
+
+      <!-- 底部区域 -->
+      <footer class="footerSection">
+        <p>© 2024. 版权所有。</p>
+        <ul class="footerNav">
+          <li><a href="#">隐私政策</a></li>
+          <li><a href="#">使用条款</a></li>
+        </ul>
+      </footer>
     </div>
-</body>
+  </body>
 </html>
