@@ -6,7 +6,9 @@
     <title>fool website</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" type="image/png" href="./瀑布流.png" />
-    <style></style>
+    <style>
+      
+    </style>
   </head>
 
   <body>
@@ -21,30 +23,9 @@
             <li><a href="#">产品展示</a></li>
             <li><a href="#">联系我们</a></li>
           </ul>
-        </nav>
-      </header>
-
-      <!-- 主要内容区域 -->
-      <section class="contentContainer">
-        <form>
-          <fieldset>
-            <legend>Personalia:</legend>
-            <label for="fname">First name:</label><br />
-            <input type="text" id="fname" name="fname" value="John" /><br />
-            <label for="lname">Last name:</label><br />
-            <input
-              type="text"
-              id="lname"
-              name="lname"
-              value="Doe"
-            /><br /><br />
-            <input type="submit" value="Submit" />
-          </fieldset>
-          <button type="button" onclick="alert('Hello World!')">
-            Click Me!
-          </button>
-          <form>
-            <input list="browsers" name="browser" />
+          <!-- 搜索表单 -->
+          <form action="https://www.baidu.com/search" method="get">
+            <input list="browsers" name="browser" type="search" placeholder="搜索" />
             <datalist id="browsers">
               <option value="Edge"></option>
               <option value="Firefox"></option>
@@ -52,36 +33,29 @@
               <option value="Opera"></option>
               <option value="Safari"></option>
             </datalist>
-
-            <input type="submit" />
+            <input type="submit" value="搜索" />
           </form>
-          <br />
-          <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
-            0
-            <input type="range" id="a" name="a" value="50" />
-            100 +
-            <input type="number" id="b" name="b" value="50" />
-            =
-            <output name="x" for="a b"></output>
-            <input type="submit" />
-          </form>
-        </form>
+        </nav>
+        
+      </header>
 
+      <!-- 主要内容区域 -->
+      <section class="contentContainer">
         <!-- 中间内容 -->
         <article class="contentSection">
           <h2>伦敦</h2>
           <p>伦敦是英格兰的首都。</p>
-          <p>它是英国人口最多的城市， 拥有超过 1300 万居民的大都市区。</p>
+          <p>它是英国人口最多的城市，拥有超过1300万居民的大都市区。</p>
         </article>
         <article class="contentSection">
           <h2>巴黎</h2>
           <p>巴黎是法国的首都。</p>
-          <p>巴黎地区是欧洲最大的人口中心之一。 拥有超过 1200 万居民。</p>
+          <p>巴黎地区是欧洲最大的人口中心之一，拥有超过1200万居民。</p>
         </article>
         <article class="contentSection">
           <h2>东京</h2>
           <p>东京是日本的首都。</p>
-          <p>它是大东京地区的中心， 以及世界上人口最多的大都市区。</p>
+          <p>它是大东京地区的中心，以及世界上人口最多的大都市区。</p>
         </article>
       </section>
 
