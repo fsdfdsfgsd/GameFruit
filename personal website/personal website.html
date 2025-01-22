@@ -13,7 +13,6 @@
   </head>
 
   <body>
-    
     <div class="mainContainer">
       <!-- 顶部区域 -->
       <header class="headerSection">
@@ -23,27 +22,34 @@
             <li><a href="#">关于我们</a></li>
             <li><a href="#">服务</a></li>
             <li><a href="#">产品展示</a></li>
-            <li><a href="#">联系我们</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropbtn">游戏</a>
+              <div class="dropdown-content">
+                <a href="#">2D</a>
+                <a href="#">2.5D</a>
+                <a href="#">3D</a>
+              </div>
+            </li>
+            <li class="right"><!-- 搜索表单 -->
+              <form action="https://www.baidu.com/search" method="get">
+                <input list="browsers" name="browser" type="search" placeholder="搜索" />
+                <datalist id="browsers">
+                  <option value="Edge"></option>
+                  <option value="Firefox"></option>
+                  <option value="Chrome"></option>
+                  <option value="Opera"></option>
+                  <option value="Safari"></option>
+                </datalist>
+                <input type="submit" value="搜索" />
+              </form>
+            </li>
           </ul>
-          
         </nav>
-        <!-- 搜索表单 -->
-        <form action="https://www.baidu.com/search" method="get">
-          <input list="browsers" name="browser" type="search" placeholder="搜索" />
-          <datalist id="browsers">
-            <option value="Edge"></option>
-            <option value="Firefox"></option>
-            <option value="Chrome"></option>
-            <option value="Opera"></option>
-            <option value="Safari"></option>
-          </datalist>
-          <input type="submit" value="搜索" />
-        </form>
+        
       </header>
-
+  
       <!-- 主要内容区域 -->
       <section class="contentContainer">
-        
         <!-- 中间内容 -->
         <article class="contentSection">
           <h2>伦敦</h2>
@@ -60,8 +66,33 @@
           <p>东京是日本的首都。</p>
           <p>它是大东京地区的中心，以及世界上人口最多的大都市区。</p>
         </article>
+        <article class="contentSection">
+          <h2>东京</h2>
+          <p>东京是日本的首都。</p>
+          <p>它是大东京地区的中心，以及世界上人口最多的大都市区。</p>
+        </article>
+        <article class="contentSection">
+          <h2>东京</h2>
+          <p>东京是日本的首都。</p>
+          <p>它是大东京地区的中心，以及世界上人口最多的大都市区。</p>
+        </article>
+        <article class="contentSection">
+          <h2>东京</h2>
+          <p>东京是日本的首都。</p>
+          <p>它是大东京地区的中心，以及世界上人口最多的大都市区。</p>
+        </article>
+        <article class="contentSection">
+          <h2>东京</h2>
+          <p>东京是日本的首都。</p>
+          <p>它是大东京地区的中心，以及世界上人口最多的大都市区。</p>
+        </article>
+        <article class="contentSection">
+          <h2>东京</h2>
+          <p>东京是日本的首都。</p>
+          <p>它是大东京地区的中心，以及世界上人口最多的大都市区。</p>
+        </article>
       </section>
-
+  
       <!-- 底部区域 -->
       <footer class="footerSection">
         <p>© 2024. 版权所有。</p>
@@ -70,7 +101,6 @@
           <li><a href="#">使用条款</a></li>
         </ul>
       </footer>
-      
     </div>
   </body>
   
