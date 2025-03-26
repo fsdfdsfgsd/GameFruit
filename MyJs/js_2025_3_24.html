@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .silder{
+            width: 500px;
+            height: 400px;
+            overflow: hidden;
+        }
+        .slider-wrapper{
+            width: 100%;
+            height: 320px;
+        }
+        .slider-wrapper img{
+            width: 100%;
+            height: 100%;
+            display: block; 
+        }
+        .slider-footer{
+            height: 80px;
+            background-color:  rgb(100, 67, 68);
+            padding: 12px 12px 0 12px;
+            position: relative;
+        }
+        .slider-footer .toggle{
+            position: absolute;
+            right: 0;
+            top: 12px;
+            display: flex;
+        }
+        .slider-footer .toggle button{
+            margin-right: 12px;
+            width: 28px;
+            height: 28px;
+            appearance: none;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .slider-footer.toggle button:hover{
+            background: rgba(255,255,255,0.2);
+        } 
+        .slider-footer p{
+            margin: 0;
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .silder-indicator{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+       .silder-indicator li{
+            width: 8px;
+            height: 8px;
+            margin: 4px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.4;
+            cursor: pointer;
+        }
+       .silder-indicator li.active{
+            width: 12px;
+            height: 12px;
+            opacity: 1;
+        } 
+
+    </style>
+</head>
+<body>
+    <div class="silder">
+        <div class="slider-wrapper">
+            <img src="./photoJs/fengjing1.webp">
+        </div>
+        <div class="slider-footer">
+            <p>阿萨的环境氛围积分</p>
+            <ul class="silder-indicator">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="toggle">
+                <button class="prev">&lt;</button>
+                <button class="next">&gt;</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const sliderData = [
+            {
+                src:"./photoJs/fengjing1.webp",
+                title:"阿萨的环境氛围积分"
+            }, 
+            {
+                src:"./photoJs/fengjing2.webp",
+                title:"3还是敌不过从vi额" 
+            },
+            {
+                src:"./photoJs/fengjing3.webp",
+                title:"水淀粉分手速度和问对方g" 
+            },
+            {
+                src:"./photoJs/fengjing4.webp",
+                title:"3拟定风女的法恩"
+            },
+            {
+                src:"./photoJs/fengjing5.webp",
+                title:"嗯fine布纳省的麻烦enf"
+            },
+            {
+                src:"./photoJs/fengjing6.webp",
+                title:"阿斯蒂芬杰弗森发表"
+            },
+            {
+                src:"./photoJs/fengjing7.webp",
+                title:"的风格i就让发v哦人呢"
+            },
+            {
+                src:"./photoJs/fengjing8.webp",
+                title:"撒旦纷纷避让你"
+            },
+            {
+                src:"./photoJs/fengjing9.webp",
+                title:"得分违反你把四点半" 
+            },
+
+        ]
+
+        const random = Math.floor(Math.random()* sliderData.length);
+
+        const img = document.querySelector(".slider-wrapper img");
+        img.src = sliderData[random].src;
+
+        const title = document.querySelector(".slider-footer p");
+        title.textContent = sliderData[random].title;
+
+        const lis = document.querySelector(`.silder-indicator li:nth-child(${random+1})`);
+        lis.classList.add("active");
+    </script>
+</body>
+</html>
