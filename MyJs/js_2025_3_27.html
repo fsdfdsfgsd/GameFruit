@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="photoCSS.css">
+</head>
+<body>
+    <div class="silder">
+        <div class="slider-wrapper">
+            <img src="./photoJs/fengjing1.webp">
+        </div>
+        <div class="slider-footer">
+            <p>阿萨的环境氛围积分</p>
+            <ul class="silder-indicator">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="toggle">
+                <button class="prev">&lt;</button>
+                <button class="next">&gt;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sliderData = [
+            {
+                src:"./photoJs/fengjing1.webp",
+                title:"阿萨的环境氛围积分"
+            }, 
+            {
+                src:"./photoJs/fengjing2.webp",
+                title:"3还是敌不过从vi额" 
+            },
+            {
+                src:"./photoJs/fengjing3.webp",
+                title:"水淀粉分手速度和问对方g" 
+            },
+            {
+                src:"./photoJs/fengjing4.webp",
+                title:"3拟定风女的法恩"
+            },
+            {
+                src:"./photoJs/fengjing5.webp",
+                title:"嗯fine布纳省的麻烦enf"
+            },
+            {
+                src:"./photoJs/fengjing6.webp",
+                title:"阿斯蒂芬杰弗森发表"
+            },
+            {
+                src:"./photoJs/fengjing7.webp",
+                title:"的风格i就让发v哦人呢"
+            },
+            {
+                src:"./photoJs/fengjing8.webp",
+                title:"撒旦纷纷避让你"
+            },
+            {
+                src:"./photoJs/fengjing9.webp",
+                title:"得分违反你把四点半" 
+            },
+
+        ];
+
+        let i = 0;
+        const next = document.querySelector(".next");
+        const prev = document.querySelector(".prev");
+        const silderDataImg = document.querySelector(".slider-wrapper img");
+        const silderDataP = document.querySelector(".slider-footer p"); 
+
+        next.addEventListener("click",function(){
+            i++;
+            if(i >= sliderData.length){
+                i = 0;
+            }
+            toggle();
+        })
+            
+        prev.addEventListener("click",function(){
+            i--;
+            if(i < 0){
+                i = sliderData.length - 1;
+            }
+            toggle();
+        })
+
+
+        function  toggle() {
+            silderDataImg.src = sliderData[i].src;
+            silderDataP.innerHTML = sliderData[i].title;
+            document.querySelector(".silder-indicator .active").classList.remove("active");
+            document.querySelector(`.silder-indicator li:nth-child(${i+1})`).classList.add("active");
+        }
+
+        let timerId = setInterval(() => {
+            next.click();
+        }, 1500);
+
+        const silder = document.querySelector(".silder");
+        silder.addEventListener("mouseenter",function(){
+            clearInterval(timerId);
+        })
+        silder.addEventListener("mouseleave",function(){
+            timerId = setInterval(() => {
+                next.click();
+            }, 1500);
+        })
+    </script>
+</body>
+</html>
