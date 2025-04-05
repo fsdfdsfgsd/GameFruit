@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0; 
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        nav{
+            width: 100%;
+            height: 50px;
+            background-color: purple;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 50px;
+        }
+        ul{
+            width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+        }
+       li{
+            cursor: pointer;
+       }
+       .head{
+            width: 100%;
+            height: 500px;
+            background-color: #333;
+       }
+       .mian{
+            width: 1000px;
+            height: 2000px;
+            background-color: pink;
+            margin: 0 auto;
+            box-shadow: 0px 1px 1px 0px black;
+       }
+       main div{
+            width: 100%;
+            height: 500px;
+            background-color: green;
+            border: 1px solid black;
+       }
+       .elevator{
+            display: flex;
+            position: fixed;
+            right: 10px;
+            bottom: 100px;
+            text-align: center;
+            line-height: 50px;
+            
+            width: 50px;
+            opacity: 0;
+       }
+       .elevator ul{
+            background-color: green;
+            list-style: none;
+            margin: 10px 0;
+            flex-direction: column;
+       }
+       .elevator ul li{
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0px 1px 1px 0px black;
+       }
+       .elevator ul li a{
+            text-decoration: none;
+            color: black; 
+       }
+       .top{
+            line-height: 50px;
+            cursor: pointer;
+            animation: 0.3s;
+            box-shadow: 0px 1px 1px 0px black;
+        }
+        .elevator .active{
+            color: red;
+       }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>第一个</li>
+            <li>第二个</li>
+            <li>第三个</li>
+            <li>第四个</li>
+            <li>第五个</li>
+        </ul>
+    </nav>
+    <div class="head"></div>
+    <main class="mian">
+        <div class="mn_one">第一个</div>
+        <div class="mn_two">第二个</div>
+        <div class="mn_three">第三个</div>
+        <div class="mn_four">第四个</div>
+    </main>
+
+    <div class="elevator">
+        <ul class="elevatorList">
+            <li><a href="javascript:;" data-int="one" class="active" >一</a></li>
+            <li><a href="javascript:;" data-int="two">二</a></li>
+            <li><a href="javascript:;" data-int="three">三</a></li>
+            <li><a href="javascript:;" data-int="four">四</a></li>
+            <li><a href="javascript:;" class="top">顶部</a></li>
+        </ul>
+    </div>
+    
+    
+    <script>
+        
+        const main = document.querySelector('.mian');
+        const elevatorTop = document.querySelector('.top');
+        const elevator = document.querySelector('.elevator');
+        window.addEventListener('scroll',function(){
+            const scrollTop = document.documentElement.scrollTop;
+            if(scrollTop >= main.offsetTop){
+                elevator.style.opacity = 1;
+            }else{
+                elevator.style.opacity = 0;
+            }
+        })
+        elevatorTop.addEventListener('click',function(){
+            window.scrollTo(0,0);
+        })
+        
+        const ul = document.querySelector('ul');
+        
+        ul.addEventListener('mouseover',function(e){
+            if(e.target.tagName === 'LI'){           
+                e.target.style.color = 'red';
+            }
+        })
+        ul.addEventListener('mouseout',function(e){
+            if(e.target.tagName === 'LI'){
+                e.target.style.color = 'black';
+            }
+        })
+
+        //点击页面可以滑动
+        const elevatorList = document.querySelector('.elevatorList');
+            elevatorList.addEventListener('click',function(e){
+                if (e.target.tagName === 'A') {
+                    const old = document.querySelector('.elevator .active');
+                    if(old) old.classList.remove('active');
+                    const top = document.querySelector(`.mn_${e.target.dataset.int}`).offsetTop;
+                    document.documentElement.scrollTop = top;
+                    e.target.classList.add('active');
+                }
+                
+            })
+        
+        
+        //页面滑动侧边栏跟随
+        window.addEventListener('scroll',function(){
+
+            const old = document.querySelector('.elevator .active');
+            if(old) old.classList.remove('active');
+
+            const one = document.querySelector('.mn_one');
+            const two = document.querySelector('.mn_two');
+            const three = document.querySelector('.mn_three');
+            const four = document.querySelector('.mn_four');
+            const n = document.documentElement.scrollTop;
+
+            if(n >= one.offsetTop && n < two.offsetTop){
+                document.querySelector('[data-int="one"]').classList.add('active');
+            }else if(n >= two.offsetTop && n < three.offsetTop){
+                document.querySelector('[data-int="two"]').classList.add('active'); 
+            }else if(n >= three.offsetTop && n < four.offsetTop){
+                document.querySelector('[data-int="three"]').classList.add('active'); 
+            }else if(n >= four.offsetTop){
+                document.querySelector('[data-int="four"]').classList.add('active'); 
+            }
+        })
+        
+    </script>
+</body>
+</html>
