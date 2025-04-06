@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 添加简约样式 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form.info {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        form.info input, form.info select {
+            margin: 5px 0;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        form.info button.add {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table button.del {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>新增学员</h1>
+    <form class="info" autocomplete="off">
+        姓名：<input type="text" name="uname" class="uname">
+        年龄：<input type="text" name="age" class="age">
+        性别：
+        <select name="gender" class="gender">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+        薪资：<input type="text" class="salary" name="salary">
+        就业城市：
+        <select name="city" class="city">
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+            <option value="杭州">杭州</option>
+        </select>
+        <button class="add">录入</button>
+    </form>
+
+    <h1>就业榜</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>薪资</th>
+                <th>就业城市</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>20</td>
+                <td>男</td>
+                <td>3000</td>
+                <td>北京</td>
+                <td>
+                    <button class="del">删除</button>
+                </td>
+            </tr> -->
+        </tbody>
+    </table>
+
+    <script>
+        // 新增学员
+        const infoForm = document.querySelector('.info');
+        const uname = document.querySelector('.uname');
+        const age = document.querySelector('.age');
+        const gender = document.querySelector('.gender');
+        const salary = document.querySelector('.salary');
+        const city = document.querySelector('.city');
+        const tbody = document.querySelector('tbody');
+
+        const items = document.querySelectorAll('[name]')
+
+        const arr = []; // 存储学生信息的数组
+        infoForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // 阻止表单默认提交行为
+
+            // 检查姓名是否为空
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].value === '') {
+                
+                    return alert('输入内容不能为空'); // 阻止表单提交
+                }
+            }
+
+            const student = {
+                studId: arr.length + 1,
+                uname: uname.value,
+                age: age.value,
+                gender: gender.value,
+                salary: salary.value,
+                city: city.value
+            };
+            arr.push(student); // 将学生信息添加到数组中
+            this.reset(); // 清空表单
+            arrData() // 调用函数添加表格行
+        })
+
+        function arrData() {
+            // 清空表格内容，避免重复添加
+            tbody.innerHTML = '';
+            for (let i = 0; i < arr.length; i++) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${arr[i].studId}</td>
+                    <td>${arr[i].uname}</td>
+                    <td>${arr[i].age}</td>
+                    <td>${arr[i].gender}</td>
+                    <td>${arr[i].salary}</td>
+                    <td>${arr[i].city}</td>
+                    <td>
+                        <button class="del">删除</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+
+                // 为删除按钮添加点击事件
+                const delButton = tr.querySelector('.del');
+                delButton.addEventListener('click', function() {
+                    // 从数组中移除对应的学生信息
+                    arr.splice(i, 1);
+                    // 重新更新表格
+                    arrData();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
