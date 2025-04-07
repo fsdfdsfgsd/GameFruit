@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 添加简约样式 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form.info {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        form.info input, form.info select {
+            margin: 5px 0;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        form.info button.add {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table button.del {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>新增学员</h1>
+    <form class="info" autocomplete="off">
+        姓名：<input type="text" name="uname" class="uname">
+        年龄：<input type="text" name="age" class="age">
+        性别：
+        <select name="gender" class="gender">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+        薪资：<input type="text" class="salary" name="salary">
+        就业城市：
+        <select name="city" class="city">
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+            <option value="杭州">杭州</option>
+        </select>
+        <button class="add">录入</button>
+    </form>
+
+    <h1>就业榜</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>薪资</th>
+                <th>就业城市</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>20</td>
+                <td>男</td>
+                <td>3000</td>
+                <td>北京</td>
+                <td>
+                    <button class="del">删除</button>
+                </td>
+            </tr> -->
+        </tbody>
+    </table>
+
+    <script>
+        const infoForm = document.querySelector('.info');
+        const uname = document.querySelector('.uname');
+        const age = document.querySelector('.age');
+        const gender = document.querySelector('.gender');
+        const salary = document.querySelector('.salary');
+        const city = document.querySelector('.city');
+        const tbody = document.querySelector('tbody');
+
+        const initData = [{
+            studId: 1,
+            uname: '张三',
+            age: 20,
+            gender: '男',
+            salary: 3000,
+            city: '北京'
+        }]; // 存储学生信息的数组
+        //localStorage.setItem('initData', JSON.stringify(initData)); // 将初始数据存储到本地存储中
+
+        const arr = JSON.parse(localStorage.getItem('initData')) || []; // 从本地存储中获取数据，或者使用初始数据
+        console.log(arr);
+        //利用map和join方法渲染
+        function render() {
+            //利用map遍历数组，返回一个对应tr的数组
+            const trArr = arr.map((item, index) => {
+                
+                return `
+                    <tr>
+                        <td>${item.studId}</td>
+                        <td>${item.uname}</td>
+                        <td>${item.age}</td> 
+                        <td>${item.gender}</td>
+                        <td>${item.salary}</td>
+                        <td>${item.city}</td>
+                        <td>
+                            <button class="del" data-index="${index}">删除</button>
+                        </td>
+                    </tr>
+                `;
+            })
+            tbody.innerHTML = trArr.join('');
+        }
+        
+        render();
+
+        //from表单提交事件，阻止默认行为，获取表单数据，添加到数组中，清空表单，调用渲染函数
+        infoForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // 阻止表单默认提交行为  
+            // 检查姓名是否为空
+            if(uname.value === '' || age.value === '' ||  salary.value === '') {
+                 return alert('输入内容不能为空'); // 阻止表单提交
+            }
+            arr.push({
+                studId: arr.length ? arr[arr.length - 1].studId + 1 : 1,
+                uname: uname.value,
+                age: age.value,
+                gender: gender.value,
+                salary: salary.value,
+                city: city.value
+            }); // 将学生信息添加到数组中
+            render(); // 渲染页面和重置表单
+            localStorage.setItem('initData', JSON.stringify(arr)); // 将数组存储到本地存储中
+            this.reset(); // 清空表单
+        })
+
+        // 为删除按钮添加点击事件
+        
+        tbody.addEventListener('click', function(e) {
+            // 从数组中移除对应的学生信息
+            if (e.target.tagName === 'BUTTON') {
+                const index = e.target.dataset.index;
+                arr.splice(index, 1); // 从数组中移除对应的学生信息
+                render(); // 重新渲染页面
+                localStorage.setItem('initData', JSON.stringify(arr)); // 将数组存储到本地存储中
+            }
+        });
+    </script>
+</body>
+</html>
